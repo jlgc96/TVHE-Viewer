@@ -7,7 +7,7 @@
         <item name="colorPrimaryDark">#00ffffff</item>
         <item name="colorAccent">#00ffffff</item>
         <item name="android:statusBarColor">@android:color/transparent</item>
-        <item name="android:windowBackground">@drawable/intro_background</item>
+        <item name="android:windowBackground">@drawable/intro_wallpaper</item>
     </style>
 
 </resources>
