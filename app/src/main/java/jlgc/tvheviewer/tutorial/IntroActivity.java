@@ -1,14 +1,16 @@
 package jlgc.tvheviewer.tutorial;
 
+import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 
+import jlgc.tvheviewer.LoginActivity;
 import jlgc.tvheviewer.R;
 
 public class IntroActivity extends AppCompatActivity {
@@ -19,38 +21,58 @@ public class IntroActivity extends AppCompatActivity {
     private int currentPage;
     private ImageButton backButton;
     private ImageButton nextButton;
-
+    SharedPreferences mPreferences;
+    private boolean firstTime;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.intro_activity);
+        mPreferences = this.getSharedPreferences("first_time", Context.MODE_PRIVATE);
+        firstTime = mPreferences.getBoolean("firstTime", true);
+        if(!firstTime) {
+            Intent login = new Intent(IntroActivity.this, LoginActivity.class);
+            startActivity(login);
+        }
+        else {
+            setContentView(R.layout.intro_activity);
 
-        mSlideViewPager = (ViewPager) findViewById(R.id.slideViewPager);
-        mDotLayout = (LinearLayout) findViewById(R.id.dotsLayout);
-        backButton = (ImageButton) findViewById(R.id.slideBack);
-        backButton.setEnabled(false);
-        backButton.setVisibility(View.INVISIBLE);
-        nextButton = (ImageButton) findViewById(R.id.slideNext);
+            mSlideViewPager = (ViewPager) findViewById(R.id.slideViewPager);
+            mDotLayout = (LinearLayout) findViewById(R.id.dotsLayout);
+            backButton = (ImageButton) findViewById(R.id.slideBack);
+            backButton.setEnabled(false);
+            backButton.setVisibility(View.INVISIBLE);
+            nextButton = (ImageButton) findViewById(R.id.slideNext);
 
-        sliderAdapter = new SliderAdapter(this);
-        mSlideViewPager.setAdapter(sliderAdapter);
-        sliderAdapter.addDotsIndicator(this, mDotLayout, 0);
-        mSlideViewPager.addOnPageChangeListener(viewListener);
+            sliderAdapter = new SliderAdapter(this);
+            mSlideViewPager.setAdapter(sliderAdapter);
+            sliderAdapter.addDotsIndicator(this, mDotLayout, 0);
+            mSlideViewPager.addOnPageChangeListener(viewListener);
 
-        //Listener buttons
-        nextButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                mSlideViewPager.setCurrentItem(currentPage +1);
-            }
-        });
-        backButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                mSlideViewPager.setCurrentItem(currentPage -1);
-            }
-        });
+            //Listener buttons
+            nextButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if(currentPage==sliderAdapter.getCount()-1)
+                    {
+                        SharedPreferences.Editor editor = mPreferences.edit();
+                        editor.putBoolean("firstTime", false);
+                        editor.commit();
+                        Intent login = new Intent(IntroActivity.this, LoginActivity.class);
+                        startActivity(login);
+
+                    }
+                    else {
+                        mSlideViewPager.setCurrentItem(currentPage +1);
+                    }
+                }
+            });
+            backButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    mSlideViewPager.setCurrentItem(currentPage -1);
+                }
+            });
+        }
     }
 
     /*Change dots color when moving to another page*/
