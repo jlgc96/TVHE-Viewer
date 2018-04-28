@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -28,75 +29,93 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
+        android:layout_marginTop="12dp"
         android:background="#12ffffff"
-        android:layout_marginTop="10dp"
+        android:orientation="vertical"
         android:paddingLeft="25dp"
         android:paddingRight="25dp">
 
         <EditText
+            android:id="@+id/usernameBox"
             android:layout_width="match_parent"
             android:layout_height="60dp"
             android:layout_marginTop="30dp"
             android:background="#22ffffff"
+            android:drawableLeft="@drawable/boss"
+            android:drawablePadding="15dp"
             android:ems="10"
             android:fontFamily="@font/noto_sans"
             android:hint="Username"
-            android:drawableLeft="@drawable/boss"
-            android:drawablePadding="15dp"
             android:inputType="text"
             android:maxLines="1"
             android:padding="8dp"
-            android:textColorHint="#80ffffff"
             android:textColor="#ffffff"
+            android:textColorHint="#80ffffff"
             android:textSize="18dp" />
 
         <EditText
+            android:id="@+id/pwdBox"
             android:layout_width="match_parent"
             android:layout_height="60dp"
             android:layout_marginTop="20dp"
             android:background="#22ffffff"
+            android:drawableLeft="@drawable/locked"
+            android:drawablePadding="15dp"
             android:ems="10"
             android:fontFamily="@font/noto_sans"
             android:hint="Password"
-            android:drawableLeft="@drawable/locked"
-            android:drawablePadding="15dp"
             android:inputType="textPassword"
             android:maxLines="1"
             android:padding="8dp"
-            android:textColorHint="#80ffffff"
             android:textColor="#ffffff"
+            android:textColorHint="#80ffffff"
             android:textSize="18dp" />
 
         <EditText
+            android:id="@+id/serverBox"
             android:layout_width="match_parent"
             android:layout_height="60dp"
             android:layout_marginTop="20dp"
             android:background="#22ffffff"
+            android:drawableLeft="@drawable/database"
+            android:drawablePadding="15dp"
             android:ems="10"
             android:fontFamily="@font/noto_sans"
             android:hint="Server Address"
-            android:drawableLeft="@drawable/database"
-            android:drawablePadding="15dp"
             android:inputType="textUri"
             android:maxLines="1"
             android:padding="8dp"
-            android:textColorHint="#80ffffff"
             android:textColor="#ffffff"
+            android:textColorHint="#80ffffff"
             android:textSize="18dp" />
 
-        <Button
+        <Switch
+            android:id="@+id/rememberSwitch"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="right"
-            android:background="@android:color/transparent"
+            android:layout_marginTop="20dp"
+            android:checked="false"
             android:fontFamily="@font/noto_sans"
-            android:text="Need Help?"
+            android:switchPadding="10dp"
+            android:text="Remember me"
+            android:textAlignment="textEnd"
+            android:textColor="@android:color/background_light"
+            android:textSize="16dp"
+            android:theme="@style/MySwitch" />
+
+        <Button
+            android:id="@+id/loginButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="15dp"
+            android:layout_marginTop="40dp"
+            android:background="@drawable/loginbutton"
+            android:fontFamily="@font/noto_sans"
+            android:text="Login"
             android:textAlignment="center"
             android:textAllCaps="false"
-            android:textColor="@android:color/background_light"
-            android:textSize="13sp" />
-
+            android:textColor="#FFFFFF"
+            android:textSize="22sp" />
     </LinearLayout>
     
 
