@@ -1,12 +1,17 @@
 package jlgc.tvheviewer;
 
 import android.os.AsyncTask;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.Html;
 import android.util.Base64;
+import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.Switch;
 import java.io.IOException;
 import java.net.HttpURLConnection;
@@ -21,6 +26,7 @@ public class LoginActivity extends AppCompatActivity {
     private EditText serverBox;
     private Switch rememberSW;
     private Button loginButton;
+    private ImageButton helpButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,8 +39,9 @@ public class LoginActivity extends AppCompatActivity {
         serverBox = (EditText) findViewById(R.id.serverBox);
         rememberSW = (Switch) findViewById(R.id.rememberSwitch);
         loginButton = (Button) findViewById(R.id.loginButton);
+        helpButton = (ImageButton) findViewById(R.id.helpButton);
 
-        // LoginButton Action
+        //LoginButton Action
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -48,7 +55,26 @@ public class LoginActivity extends AppCompatActivity {
                 new CheckAndDownloadData().execute(server,username,pwd);
             }
         });
+
+        //HelpButton Action
+        helpButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+
+
+
     }
+
+
+
+
+
+
+
+
 
     //Check login data and download playlist
     protected class CheckAndDownloadData extends AsyncTask<String, String, Integer> {

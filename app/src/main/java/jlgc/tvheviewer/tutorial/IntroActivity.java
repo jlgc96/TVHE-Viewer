@@ -91,12 +91,12 @@ public class IntroActivity extends AppCompatActivity {
                 backButton.setVisibility(View.INVISIBLE);
             }
             else if (currentPage == sliderAdapter.getCount()-1) {
-                nextButton.setImageResource(R.drawable.ic_check_circle);
+                nextButton.setImageResource(R.drawable.intro_ic_check_circle);
             }
             else {
                 backButton.setEnabled(true);
                 backButton.setVisibility(View.VISIBLE);
-                nextButton.setImageResource(R.drawable.ic_keyboard_arrow_right);
+                nextButton.setImageResource(R.drawable.intro_ic_keyboard_arrow_right);
                 nextButton.setEnabled(true);
                 nextButton.setVisibility(View.VISIBLE);
             }
